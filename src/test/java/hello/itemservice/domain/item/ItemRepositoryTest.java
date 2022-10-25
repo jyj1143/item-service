@@ -13,7 +13,6 @@ class ItemRepositoryTest {
     ItemRepository itemRepository = new ItemRepository();
 
     @AfterEach
-
     void afterEach() {
         itemRepository.clearStore();
     }
