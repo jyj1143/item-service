@@ -91,7 +91,7 @@ public class BasicItemController {
      * @ModelAttribute 자체 생략 가능
      * model.addAttribute(item) 자동 추가
      */
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV4(Item item) {
 
         itemRepository.save(item);
@@ -100,6 +100,18 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    /**
+     * PRG - Post/Redirect/Get
+     */
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+
+        itemRepository.save(item);
+        //model.addAttribute("item", item);  //ModelAttribute가 "item"를 자동으로 Model에 추가, 생략 가능
+        //return "basic/item";
+
+        return "redirect:/basic/items/" + item.getId();
+    }
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
